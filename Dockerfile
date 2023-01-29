@@ -27,15 +27,23 @@ RUN cd /src && \
 RUN cd /src && \
     git clone https://github.com/riscv/riscv-isa-sim && \
     cd riscv-isa-sim && \
-    ./configure --prefix=$RISCV --with-fesvr=$RISCV && \
+    mkdir -p build && \
+    cd build && \
+    ../configure --prefix=$RISCV --with-fesvr=$RISCV && \
     make -j8 && \
-    make install
+    make install && \
+    cd .. && \
+    rm -rf build
 
 RUN cd /src && \
-    git clone --depth 1 https://gitlab.com/barbem/qemu_for_cep.git --branch=xinul &&\
+    git clone --depth 1 https://gitlab.com/barbem/qemu_for_cep.git --branch=xinul_2021 &&\
     cd qemu_for_cep &&\
-    ./configure --prefix=$RISCV --target-list=riscv64-softmmu | tee $RISCV/qemu-configure-log.txt &&\
+    mkdir -p build && \
+    cd build && \
+    ../configure --prefix=$RISCV --target-list=riscv64-softmmu | tee $RISCV/qemu-configure-log.txt &&\
     make -j8 &&\
-    make install
+    make install && \
+    cd .. && \
+    rm -rf build
 
 EXPOSE 1234
