@@ -15,35 +15,7 @@ RUN apt-get update && \
 
 RUN cd /src && \
     git clone https://github.com/riscv/riscv-gnu-toolchain && \
-    cd riscv-gnu-toolchain && \
-    mkdir -p build && \
-    cd build && \
-    ../configure --prefix=$RISCV && \
-    make -j8 && \
-    make install && \
-    cd .. && \
-    rm -rf build
-
-RUN cd /src && \
     git clone https://github.com/riscv/riscv-isa-sim && \
-    cd riscv-isa-sim && \
-    mkdir -p build && \
-    cd build && \
-    ../configure --prefix=$RISCV --with-fesvr=$RISCV && \
-    make -j8 && \
-    make install && \
-    cd .. && \
-    rm -rf build
-
-RUN cd /src && \
-    git clone --depth 1 https://gitlab.com/barbem/qemu_for_cep.git --branch=xinul_2021 &&\
-    cd qemu_for_cep &&\
-    mkdir -p build && \
-    cd build && \
-    ../configure --prefix=$RISCV --target-list=riscv64-softmmu | tee $RISCV/qemu-configure-log.txt &&\
-    make -j8 &&\
-    make install && \
-    cd .. && \
-    rm -rf build
+    git clone --depth 1 https://gitlab.com/barbem/qemu_for_cep.git --branch=xinul_2021
 
 EXPOSE 1234
