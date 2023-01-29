@@ -15,6 +15,12 @@ RUN apt-get update && \
 
 RUN cd /src && \
     git clone https://github.com/riscv/riscv-gnu-toolchain && \
+    cd riscv-gnu-toolchain && \
+    mkdir -p build && \
+    cd build && \
+    ../configure --prefix=$RISCV && \
+    make check && \
+    cd /src && \
     git clone https://github.com/riscv/riscv-isa-sim && \
     git clone --depth 1 https://gitlab.com/barbem/qemu_for_cep.git --branch=xinul_2021
 
