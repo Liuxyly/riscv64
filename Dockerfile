@@ -16,7 +16,6 @@ RUN apt-get update && \
 RUN cd /src && \
     git clone https://github.com/riscv/riscv-gnu-toolchain && \
     cd riscv-gnu-toolchain && \
-    git submodule update --init --recursive && \
     mkdir -p /tmp/build && \
     cd /tmp/build && \
     /src/riscv-gnu-toolchain/configure --prefix=$RISCV --enable-qemu-system --enable-multilib --with-isa-spec=2.2 --with-sim=qemu --without-system-zlib && \
