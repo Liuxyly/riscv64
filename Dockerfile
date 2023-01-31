@@ -20,7 +20,7 @@ RUN cd /src && \
     mkdir -p /tmp/build && \
     cd /tmp/build && \
     /src/riscv-gnu-toolchain/configure --prefix=$RISCV --enable-qemu-system --enable-multilib --with-isa-spec=2.2 --with-sim=qemu --without-system-zlib && \
-    make linux -j12 && \
+    make linux -j12 > /dev/null 2>&1 && \
     make install && \
     cd / && \
     rm -rf /tmp/build
