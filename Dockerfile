@@ -9,7 +9,7 @@ RUN apt-get update && \
         git ca-certificates autoconf automake autotools-dev curl libmpc-dev \
         libmpfr-dev libgmp-dev gawk build-essential bison flex texinfo gperf \
         libtool patchutils bc zlib1g-dev libexpat-dev device-tree-compiler \
-        python3 libglib2.0-dev libfdt-dev libpixman-1-dev zlib1g-dev libsdl1.2-dev ninja-build python-is-python3 && \
+        python3 libglib2.0-dev libfdt-dev libpixman-1-dev zlib1g-dev libsdl1.2-dev ninja-build python-is-python3 libboost-all-dev && \
     apt-get autoclean && \
     mkdir -p $RISCV /src
 
